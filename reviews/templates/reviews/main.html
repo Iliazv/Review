@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type = 'text/css' href="{% static 'reviews/main_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src={% static "C:\Users\ннн\Desktop\site_recensia\reviews\static\reviews\email_script.js" %}></script>
+    <script type="text/javascript" src={% static "C:\Users\ннн\Desktop\site_recensia\reviews\static\reviews\send.js" %}></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+            (function(){
+                emailjs.init("oiUU7d9wNAjEWpIuH");
+            })();
+       </script>
+    <link rel="shortcut icon" href="{% static 'reviews/images/favicon.ico' %}" />
+
+    <title>Рецензия.ру</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="window">
+            <div class="container">
+                <div class="top">
+                    <header class="header">
+                        <div class="header__logo">
+                            <a href="{% url "main_page" %}"><img src="{% static '../static/reviews/images/logo.png' %}" alt="" class="header__image"></a>
+                            <span class="header__title">Рецензия.ру</span>
+                        </div>
+
+                        <div class="header__section">
+                            <img src="{% static '../static/reviews/images/menu.png' %}" alt="" class="section__icon">
+                            <span class="header__section-name">Меню</span>
+                        </div>
+
+                        <div class="header__line">
+                            <navbar class="header__navigation">
+                                <form action = {% url 'main_page' %} method='post'>
+                                    {% csrf_token %}
+                                    <button type = 'submit' class="header__button header__animation" value="Новинки">Главная</button>
+                                </form>
+                                <form action = {% url 'modern_page' %} method='post'>
+                                    {% csrf_token %}
+                                    <button type = 'submit' class="header__button" value="Новинки">Современное</button>
+                                </form>
+                                <form action = {% url 'popular_page' %} method='post'>
+                                    {% csrf_token %}
+                                    <button type = 'submit' class="header__button" value="Новинки">Популярное</button>
+                                </form>
+                            </navbar>
+                            <div class="header__search">
+                                <form action="{% url "show_searched" %}" method="post" class="form__flex">
+                                    {% csrf_token %}
+                                    <input type="search" class="header__input" name="top_input" id="top_input" placeholder="Введите название книги">
+                                    <input type = 'image' id = 'submit_box' name = '' value = '&nbsp;' class = 'header__submit' src = "{% static '../static/reviews/images/search_img.png' %}">
+                                </form>
+                            </div>
+                            <div class="header__auth">
+                                {% if not request.user.is_authenticated %}
+                                    <div class="header__label">Ауторизация</div>
+                                    <form action="{% url "login" %}" method="post">
+                                        {% csrf_token %}
+                                        <input type = 'submit' class="header__reg" value="Вход">
+                                    </form>
+                                    <form action="{% url "register" %}">
+                                        {% csrf_token %}
+                                        <input type = 'submit' class="header__log" value="Регистрация">
+                                    </form>
+                                {% else %}
+                                    <div class="header__label">Пользователь:</div>
+                                    <div class="header__user">{{user}}</div>
+                                    <form action = {% url 'logout_view' %} method='get'>
+                                        {% csrf_token %}
+                                        <input type = 'submit' class="header__log header__exit" value="Выйти">
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </header>
+                </div>
+
+                <div class="list">
+                    <div class="list__title">Список книг <img src="{% static '../static/reviews/images/list_book.png' %}" alt="" class="list__icon"></div>
+                    <div class="list__books">
+                        <ol>
+                        {% for book in list_books %}
+                            <li class="list__element"><a href="{% url "content_book" book.id %}" class="list__href">{{book}}</a></li>
+                        {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="digest">
+                    <div class="digest__row">
+                        <div class="digest__position">
+                            <img src="{% static '../static/reviews/images/digest.png' %}" alt="" class="digest__image">
+                        </div>
+                        <div class="digest__text">
+                            <p>Ежемесячные дайджесты и самое важное </p>из мира книг — в вашей почте
+                        </div>
+                        <div class="digest__input">
+                            <input type = 'text' class = 'subscribe_box' name = 'text' placeholder = 'Ваш email'>
+                            <input type = 'submit' class = 'subscribe_button' name = 'menu' value = 'Подписаться' onclick='sendMail()'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="digest-hidden">
+                    <div class="digest__row-hidden">
+                        <div class="digest__position">
+                            <img src="{% static '../static/reviews/images/digest.png' %}" alt="" class="digest__image">
+                        </div>
+                        <div class="digest__text">
+                            <p>Ежемесячные дайджесты и самое важное из мира книг — в вашей почте</p>
+                        </div>
+                        <div class="digest__input">
+                            <input type = 'text' class = 'subscribe_box' name = 'text' placeholder = 'Ваш email'>
+                            <input type = 'submit' class = 'subscribe_button' name = 'menu' value = 'Подписаться' onclick='sendMail()'>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <div class="footer__frame">
+                        <div class="footer__block_1">
+                            <div class="footer__ceiling">
+                                <a href="https://vk.com/"><img src="{% static '../static/reviews/images/vk.png' %}" alt="" class="footer__network"></a>
+                                <a href="https://ok.ru/"><img src="{% static '../static/reviews/images/ok.png' %}" alt="" class="footer__network"></a>
+                                <a href="https://www.instagram.com/"><img src="{% static '../static/reviews/images/insta.png' %}" alt="" class="footer__network footer__insta"></a>
+                            </div>
+                            <div class="footer__floor">
+                                <span class="footer__copyright">© Рецензия.ру 2022-2022</span>
+                                <span class="footer__age">12+</span>
+                            </div>
+                        </div>
+                        <div class="footer__block_2">
+                            <div class="footer__list">
+                                <div class="footer__recensia">
+                                    <div class="footer__title">Рецензия.ру</div>
+                                    <li><a href="#" class="footer__point">О проекте</a></li>
+                                    <li><a href="#" class="footer__point">Команда</a></li>
+                                </div>
+                                <div class="footer__cooperation">
+                                    <div class="footer__title">Сотрудничество</div>
+                                    <li><a href="#" class="footer__point">Реклама</a></li>
+                                    <li><a href="#" class="footer__point">Услуги</a></li>
+                                </div>
+                                <div class="footer__help">
+                                    <div class="footer__title">Поддержка</div>
+                                    <li><a href="#" class="footer__point">Пожаловаться</a></li>
+                                    <li><a href="#" class="footer__point">Техническая поддержка</a></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>

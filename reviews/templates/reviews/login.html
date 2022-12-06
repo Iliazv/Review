@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type = 'text/css' href="{% static 'reviews/authorization.css' %}">
+    <link rel="stylesheet" type = 'text/css' href="{% static 'books/general_style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'reviews/images/favicon.ico' %}" />
+
+    <title>Вход | Рецензия.ру</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="registration">
+                    <div class="registration__block">
+                        <div class="registration__image">
+                            <a href = {% url "main_page" %}><img src="{% static '../static/reviews/images/logo.png' %}"/ width = 175 height = 175 class = 'scale2'>
+                            <figcaption class="registration__figcaption">DigitaLib</figcaption></a>
+                        </div>
+                        <div class="text-field__icon registration__name-login">
+                            <form method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        class="form-control"
+                                        maxlength="150"
+                                        id="id_username"
+                                        placeholder='Имя'
+                                        required
+                                    />
+                        </div>
+                        <div class="text-field__icon registration__password">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    class="form-control"
+                                    id="id_password"
+                                    placeholder='Пароль'
+                                    required
+                                />
+                        </div>
+                        <div class="registration__link-position">
+                            <a href="#" class = 'registration__link-style'>Забыли пароль?</a>
+                        </div>
+                        <div class = 'registration__button registration__login'>
+                            <button type="submit" class="registration__submit-button">Вход</button>
+                        </div>
+                        <div class="registration__register-link">
+                            <a href={% url 'register' %} class="registration__register-href">Зарегистрируйтесь</a>, если у вас еще нет аккаунта 
+                        </div>
+
+                        {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+                            {{ error|escape }}
+                            {% endfor %} {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

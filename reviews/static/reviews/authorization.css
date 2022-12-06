@@ -1,0 +1,424 @@
+/*Поставить min width как максимальный для регистрации*/
+/*Поставить height и width в самой картинке css и сделать адаптивной*/
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    vertical-align: top;
+}
+
+button, input {
+    border: 0px;
+}
+
+html,
+body {
+    font-family: Arial;
+    height: 100%;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}/* Reset styles */
+
+.wrapper {
+    background-image: url("/static/reviews/images/geometry.webp");
+    background-size: cover;
+}
+
+.registration {
+    display: flex;
+    height: 967px;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 750px;
+    height: 900px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+}
+
+.registration__image {
+    position: relative;
+    padding: 50px 0 30px 0;
+}
+
+.registration__image a {
+    padding: 50px 0 30px 0;
+}
+
+figcaption {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 600;
+    color: black;
+    font-size: 36px;
+    position: absolute;
+    bottom: 0px;
+    right: -8px;
+    padding: 0 10px;
+}
+
+.scale2 {
+    width: 175px;
+    height: 175px;
+}
+
+.registration__name-login {
+    padding: 130px 0 0 0;
+}
+
+.registration__name-register {
+    padding: 40px 0 0 0;
+}
+
+#id_username {
+    padding: 0 0 0 14px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    width: 500px;
+    height: 50px;
+}
+
+#id_password, #id_password1, #id_password2 {
+    padding: 0 0 0 14px;
+    margin: 60px 0 0 0;
+    font-family: 'Comfortaa', cursive;
+    font-size: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    width: 500px;
+    height: 50px;
+}
+
+#id_password, #id_password1, #id_password2 {
+    padding: 0 0 0 14px;
+    margin: 50px 0 0 0;
+    font-family: 'Comfortaa', cursive;
+    font-size: 18px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    width: 500px;
+    height: 50px;
+}
+
+#id_password1 {
+    border-radius: 0 0 0 0;
+}
+
+#id_password2 {
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    border-top: 0px;
+    border-radius: 0 0 7px 7px;
+}
+
+#id_username::placeholder {
+    font-family: 'Comfortaa', cursive;
+    font-size: 17px;
+}
+
+#id_password::placeholder, #id_password1::placeholder, #id_password2::placeholder {
+    font-family: 'Comfortaa', cursive;
+    font-size: 17px;
+}
+
+.text-field__icon {
+    position: relative;
+}
+
+.text-field__icon::before {
+    content: '';
+    color: #bdbdbd;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 4px;
+    left: 3px;
+  }
+
+
+
+
+.registration__link-position {
+    padding: 22px 0 0 0;
+    margin: 0 0 0 360px;
+}
+
+.registration__link-style {
+    font-family: 'Comfortaa', cursive;
+    font-size: 16px;
+    color: rgb(118, 118, 118);
+    transition: 0.3s ease;
+}
+
+.registration__link-style:hover {
+    color: #98abff;
+}
+
+.registration__button {
+    padding: 95px 0 0 0;
+}
+
+.registration__login {
+    padding: 140px 0 0 0;
+}
+
+.registration__register {
+    padding: 90px 0 0 0;
+}
+
+.registration__submit-button {
+    font-family: 'Comfortaa', cursive;
+    width: 500px;
+    height: 50px;
+    border-radius: 7px;
+    background-color: #5f84fd;
+    color: rgb(243, 243, 243);
+    font-size: 22px;
+    letter-spacing: 0.8px;
+    transition: 0.3s ease;
+}
+
+.registration__submit-button:hover {
+    background-color: #65b3f3;
+    color: rgb(255, 255, 255);
+}
+
+.registration__register-link {
+    font-family: 'Comfortaa', cursive;
+    padding: 30px 0 0 0;
+    font-size: 16px;
+    color: rgb(118, 118, 118);
+}
+
+.registration__register-href {
+    font-family: 'Comfortaa', cursive;
+    color: rgb(118, 118, 118);
+    transition: 0.3s ease;
+}
+
+.registration__register-href:hover {
+    color: #98abff;;
+}
+
+figcaption {
+    margin: 0 0 0 10px;
+}
+
+.registration__password {
+    padding: 0 0 0 0;
+}
+
+@media (max-width: 750px) {
+    .registration {
+        height: 910px;
+    }
+
+    .registration__block {
+        height: 850px;
+    }
+
+    .registration__image {
+        padding: 30px 0 30px 0;
+    }
+
+    .scale2 {
+        width: 168px;
+        height: 168px;
+    }
+
+    figcaption {
+        font-size: 35px;
+    }
+
+    .registration__name-login {
+        padding: 115px 0 0 0;
+    }
+
+    .registration__button {
+        padding: 125px 0 0 0;
+    }
+}
+
+@media (max-width: 550px) {
+    #id_password, #id_password1, #id_password2 {
+        width: 400px;
+        height: 46px;
+    }
+
+    #id_username {
+        width: 400px;
+        height: 46px;
+    }
+
+    .registration__submit-button {
+        font-family: 'Comfortaa', cursive;
+        width: 400px;
+        height: 46px;
+        border-radius: 7px;
+        background-color: #5f84fd;
+        color: rgb(243, 243, 243);
+        font-size: 22px;
+        letter-spacing: 0.8px;
+        transition: 0.3s ease;
+    }
+
+    .registration__link-position {
+        padding: 22px 0 0 0;
+        margin: 0 0 0 250px;
+    }
+
+    .registration__register-link {
+        font-family: 'Comfortaa', cursive;
+        padding: 30px 0 0 0;
+        font-size: 15px;
+        color: rgb(118, 118, 118);
+    }
+
+    .registration {
+        height: 890px;
+    }
+
+    .registration__block {
+        height: 830px;
+    }
+
+    .registration__image {
+        padding: 27px 0 30px 0;
+    }
+
+    .scale2 {
+        width: 157px;
+        height: 157px;
+    }
+
+    .registration__name-login {
+        padding: 105px 0 0 0;
+    }
+
+    .registration__button {
+        padding: 115px 0 0 0;
+    }
+
+    figcaption {
+        font-size: 33px;
+    }
+}
+
+@media (max-width: 450px) {
+    #id_password, #id_password1, #id_password2 {
+        width: 300px;
+        height: 41px;
+    }
+
+    #id_username {
+        width: 300px;
+        height: 41px;
+    }
+
+    .registration__submit-button {
+        font-family: 'Comfortaa', cursive;
+        width: 300px;
+        height: 41px;
+        border-radius: 7px;
+        background-color: #5f84fd;
+        color: rgb(243, 243, 243);
+        font-size: 22px;
+        letter-spacing: 0.8px;
+        transition: 0.3s ease;
+    }
+
+    .registration__link-style {
+        font-size: 14px;
+    }
+
+    .registration__link-position {
+        padding: 22px 0 0 0;
+        margin: 0 0 0 200px;
+    }
+
+    .registration__register-link {
+        font-family: 'Comfortaa', cursive;
+        padding: 25px 0 0 0;
+        font-size: 14px;
+        color: rgb(118, 118, 118);
+    }
+
+    .registration {
+        height: 800px;
+    }
+
+    .registration__block {
+        height: 740px;
+    }
+
+    .registration__image {
+        padding: 24px 0 21px 0;
+    }
+
+    .scale2 {
+        width: 145px;
+        height: 145px;
+    }
+
+    .registration__name-login {
+        padding: 97px 0 0 0;
+    }
+
+    .registration__button {
+        padding: 100px 0 0 0;
+    }
+
+    figcaption {
+        font-size: 30px;
+    }
+}
